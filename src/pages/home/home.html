@@ -3,16 +3,28 @@
     <ion-title>
       sonidos de animales
     </ion-title>
+
+    <ion-buttons end>
+
+      <button ion-button *ngIf="!ordenando" (click)="ordenando = true">
+        Ordenar
+      </button>
+      <button ion-button *ngIf="ordenando" (click)="ordenando = false">
+        Listo
+      </button>
+
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-refresher (ionRefresh)="recargarAnimales($event)">
+  <ion-refresher [enabled]="!ordenando" (ionRefresh)="recargarAnimales($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
+  <ion-list [reorder]="ordenando" (ionItemReorder)="reordenarAnimales($event)">
     <ion-item-sliding *ngFor="let animal of animales; let i = index">
 
       <ion-item (click)="reproducir( animal )">

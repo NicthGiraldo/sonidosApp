@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ANIMALES } from '../../data/data.animales'; 
 import { Animal } from '../../interfaces/animal.interface';//se importa la clase "interface" para trabajar con ella
-import { Refresher } from 'ionic-angular'
+import { Refresher, reorderArray } from 'ionic-angular'
 
 //"component" son los componentes propios de la pagina
 @Component({
@@ -13,6 +13,7 @@ export class HomePage {
   animales:Animal[] = []; //se crea este array vacio para guardar la informacion de "data.animales.ts"
   audio = new Audio(); //se crea el objeto audio-- "Audio" es una funcion propia de html
   audioTiempo: any;
+  ordenando:boolean = false;
 
   constructor() {
     //en "data.animales.ts" se esta creando un array con la informacion de los animales "ANIMALES" 
@@ -55,6 +56,10 @@ export class HomePage {
       this.animales = ANIMALES.slice(0);
       refresher.complete();
     }, 1500);
+  }
+
+  reordenarAnimales(indices:any){
+    this.animales = reorderArray(this.animales, indices);
   }
 
 }
