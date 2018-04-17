@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ANIMALES } from '../../data/data.animales'; 
 import { Animal } from '../../interfaces/animal.interface';//se importa la clase "interface" para trabajar con ella
+import { Refresher } from 'ionic-angular'
 
 //"component" son los componentes propios de la pagina
 @Component({
@@ -45,6 +46,15 @@ export class HomePage {
 
   borrarAnimal(idx:number){
     this.animales.splice(idx, 1);
+  }
+
+  recargarAnimales(refresher:Refresher){
+
+    setTimeout(() => {
+      console.log('termino el refresh');
+      this.animales = ANIMALES.slice(0);
+      refresher.complete();
+    }, 1500);
   }
 
 }
