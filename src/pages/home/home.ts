@@ -43,4 +43,8 @@ export class HomePage {
     }
   }
 
+  borrarAnimal(idx:number){
+    this.animales.splice(idx, 1);
+  }
+
 }
