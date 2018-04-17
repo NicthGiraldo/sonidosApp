@@ -4,9 +4,9 @@
       sonidos de animales
     </ion-title>
 
-    <ion-buttons end>
+    <ion-buttons end><!--al definir la palabra "end" se esta diciendo que se coloca al lado derecho-->
 
-      <button ion-button *ngIf="!ordenando" (click)="ordenando = true">
+      <button ion-button *ngIf="!ordenando" (click)="ordenando = true"><!--ordenando es una variable traida desde el "home.ts"-->
         Ordenar
       </button>
       <button ion-button *ngIf="ordenando" (click)="ordenando = false">
@@ -20,16 +20,16 @@
 
 <ion-content>
 
-  <ion-refresher [enabled]="!ordenando" (ionRefresh)="recargarAnimales($event)">
+  <ion-refresher [enabled]="!ordenando" (ionRefresh)="recargarAnimales($event)"><!--"$event" se coloca de manera predeterminada ya que el "ionRefresh" resibe como parametro un evento-->
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list [reorder]="ordenando" (ionItemReorder)="reordenarAnimales($event)">
-    <ion-item-sliding *ngFor="let animal of animales; let i = index">
+  <ion-list [reorder]="ordenando" (ionItemReorder)="reordenarAnimales($event)"><!--al colocar el metodo "reorder" entre [] se pude controlar con variables o resultados de procedimientos-->
+    <ion-item-sliding *ngFor="let animal of animales; let i = index"><!--se le asigna a la variable "i" el indice traido con el ngfor-->
 
       <ion-item (click)="reproducir( animal )">
         <ion-avatar item-start>
-          <img [src]="animal.imagen">
+          <img [src]="animal.imagen"><!--si la ruta so se coloca directamente y viene como resultado de una validacion o de una variable, se coloca "src" entre []-->
         </ion-avatar>
 
         <h2>{{ animal.nombre }}</h2>

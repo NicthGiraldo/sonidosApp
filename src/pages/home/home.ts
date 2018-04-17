@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ANIMALES } from '../../data/data.animales'; 
 import { Animal } from '../../interfaces/animal.interface';//se importa la clase "interface" para trabajar con ella
-import { Refresher, reorderArray } from 'ionic-angular'
+import { Refresher, reorderArray } from 'ionic-angular';//al ser dos librerias de "ionic-angular" se pueden llamar en la misma linea 
+//"Refresher" se utiliza para recargar la pagina
+//"reorderArray" se utiliza para organizar los items de una lista 
 
 //"component" son los componentes propios de la pagina
 @Component({
@@ -46,20 +48,19 @@ export class HomePage {
   }
 
   borrarAnimal(idx:number){
-    this.animales.splice(idx, 1);
+    this.animales.splice(idx, 1);//la funcion "splice" nos permite borrar con un indice y cuantos elementos se quieren eliminar
   }
 
   recargarAnimales(refresher:Refresher){
 
     setTimeout(() => {
-      console.log('termino el refresh');
-      this.animales = ANIMALES.slice(0);
-      refresher.complete();
-    }, 1500);
+      this.animales = ANIMALES.slice(0);//al llamar la funsion "recargarAnimales" lo primero es recargar de nuevo la informacion que tenemos en "data.animales.ts"
+      refresher.complete();//"complete" es una funsion de "refresher" que determina que la actualizacion de la pagina o componente termino 
+    }, 1500);//determinamos el tiempo de la animacion, podemos acoplarla para que sea rapida o larga 
   }
 
   reordenarAnimales(indices:any){
-    this.animales = reorderArray(this.animales, indices);
+    this.animales = reorderArray(this.animales, indices);//coloca de donde proviene la informacion y hacia donde se dirige con la variable "indices"
   }
 
 }
